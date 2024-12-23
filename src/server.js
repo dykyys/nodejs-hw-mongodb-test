@@ -27,7 +27,7 @@ export const startServer = () => {
     });
   });
 
-  app.get('/students', async (req, res) => {
+  app.get('/contacts', async (req, res) => {
     const students = await getAllStudents();
 
     res.status(200).json({
@@ -37,7 +37,7 @@ export const startServer = () => {
     });
   });
 
-  app.get('/students/:studentId', async (req, res, next) => {
+  app.get('/contacts/:contactId', async (req, res, next) => {
     const { studentId } = req.params;
     const student = await getStudentById(studentId);
 
