@@ -30,6 +30,8 @@ export const startServer = () => {
   app.get('/contacts', async (req, res) => {
     const students = await getAllStudents();
 
+    console.log(students);
+
     res.status(200).json({
       status: 200,
       message: 'Successfully found contacts!',
@@ -38,8 +40,10 @@ export const startServer = () => {
   });
 
   app.get('/contacts/:contactId', async (req, res, next) => {
-    const { studentId } = req.params;
-    const student = await getStudentById(studentId);
+    const { contactId } = req.params;
+    console.log('req.params', req.params);
+    console.log('studentId', contactId);
+    const student = await getStudentById(contactId);
 
     // Відповідь, якщо контакт не знайдено
     if (!student) {
@@ -53,7 +57,7 @@ export const startServer = () => {
     // Відповідь, якщо контакт знайдено
     res.json({
       status: 200,
-      message: `Successfully found contact with ${studentId}`,
+      message: `Successfully found contact with ${contactId}`,
       data: student,
     });
   });
